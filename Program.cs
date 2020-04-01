@@ -35,7 +35,7 @@ namespace cmdarr
         {
             return new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile(Path.Combine(AppContext.BaseDirectory, "config") + "/appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(Environment.CurrentDirectory + "/config/appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .AddCommandLine(args)
                 .Build();
