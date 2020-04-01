@@ -17,6 +17,9 @@ namespace cmdarr
         public void Run()
         {
             string token = _configuration.GetValue<string>("slack:bot-user-oauth-access-token");
+            if (string.IsNullOrEmpty(token)){
+                throw new System.ArgumentNullException(nameof(token), "Value of 'slack:bot-user-oauth-access-token' cannot be empty.");
+            }
             string message = _configuration.GetValue<string>("message-to-write");
             var writer = new SlackMessageWriter(token);
             Task.WaitAll(writer.WriteMessage(message));
