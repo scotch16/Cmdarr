@@ -33,9 +33,10 @@ namespace cmdarr
 
         private static IConfiguration SetupConfiguration(string[] args)
         {
+            var appSettingsFilePath = File.Exists("/config/appsettings.json") ? "/config/appsettings.json" : AppContext.BaseDirectory + "/config/appsettings.json";
             return new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile(Environment.CurrentDirectory + "/config/appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(appSettingsFilePath, optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .AddCommandLine(args)
                 .Build();
